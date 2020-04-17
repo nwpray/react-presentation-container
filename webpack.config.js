@@ -1,8 +1,9 @@
 const path = require('path');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 
-module.exports = {
+const clientConfig = {
   mode: 'development',
+  target: 'web',
   entry: {
     index: path.resolve('src/index.js')
   },
@@ -30,3 +31,7 @@ module.exports = {
   },
   plugins: [new CleanWebpackPlugin('dist')]
 };
+
+const serverConfig = { ...clientConfig, target: 'node' };
+
+module.exports = [clientConfig, serverConfig];
