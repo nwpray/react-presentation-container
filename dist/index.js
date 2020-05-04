@@ -7,7 +7,7 @@
 		exports["react-presentation-container"] = factory();
 	else
 		root["react-presentation-container"] = factory();
-})(global, function() {
+})(window, function() {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -123,9 +123,9 @@ eval("var Symbol = __webpack_require__(/*! ./_Symbol */ \"./node_modules/lodash/
   !*** ./node_modules/lodash/_freeGlobal.js ***!
   \********************************************/
 /*! no static exports found */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-eval("/** Detect free variable `global` from Node.js. */\nvar freeGlobal = typeof global == 'object' && global && global.Object === Object && global;\n\nmodule.exports = freeGlobal;\n\n\n//# sourceURL=webpack://react-presentation-container/./node_modules/lodash/_freeGlobal.js?");
+eval("/* WEBPACK VAR INJECTION */(function(global) {/** Detect free variable `global` from Node.js. */\nvar freeGlobal = typeof global == 'object' && global && global.Object === Object && global;\n\nmodule.exports = freeGlobal;\n\n/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../webpack/buildin/global.js */ \"./node_modules/webpack/buildin/global.js\")))\n\n//# sourceURL=webpack://react-presentation-container/./node_modules/lodash/_freeGlobal.js?");
 
 /***/ }),
 
@@ -244,6 +244,17 @@ eval("\n\nif (false) {} else {\n  module.exports = __webpack_require__(/*! ./cjs
 
 /***/ }),
 
+/***/ "./node_modules/webpack/buildin/global.js":
+/*!***********************************!*\
+  !*** (webpack)/buildin/global.js ***!
+  \***********************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+eval("var g;\n\n// This works in non-strict mode\ng = (function() {\n\treturn this;\n})();\n\ntry {\n\t// This works if eval is allowed (see CSP)\n\tg = g || new Function(\"return this\")();\n} catch (e) {\n\t// This works if the window reference is available\n\tif (typeof window === \"object\") g = window;\n}\n\n// g can still be undefined, but nothing to do about it...\n// We return undefined, instead of nothing here, so it's\n// easier to handle this case. if(!global) { ...}\n\nmodule.exports = g;\n\n\n//# sourceURL=webpack://react-presentation-container/(webpack)/buildin/global.js?");
+
+/***/ }),
+
 /***/ "./src/PresentationContainer.jsx":
 /*!***************************************!*\
   !*** ./src/PresentationContainer.jsx ***!
@@ -253,23 +264,6 @@ eval("\n\nif (false) {} else {\n  module.exports = __webpack_require__(/*! ./cjs
 
 "use strict";
 eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var lodash_isFunction__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! lodash/isFunction */ \"./node_modules/lodash/isFunction.js\");\n/* harmony import */ var lodash_isFunction__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(lodash_isFunction__WEBPACK_IMPORTED_MODULE_1__);\nfunction _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }\n\nfunction ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }\n\nfunction _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }\n\nfunction _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }\n\n\n\n\nvar pipe = function pipe(fncs, initValue) {\n  return fncs.reduce(function (prevValue, fn) {\n    return fn(prevValue);\n  }, initValue);\n};\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (function (_ref) {\n  var Component = _ref.component,\n      filterProps = _ref.filterProps,\n      _ref$bindMembers = _ref.bindMembers,\n      bindMembers = _ref$bindMembers === void 0 ? [] : _ref$bindMembers,\n      Controller = _ref.controller,\n      _ref$middleware = _ref.middleware,\n      middleware = _ref$middleware === void 0 ? [] : _ref$middleware;\n\n  var getContainer = function getContainer() {\n    if (lodash_isFunction__WEBPACK_IMPORTED_MODULE_1___default()(Controller) && !!Controller.prototype.isReactComponent) {\n      /* eslint-disable react/no-this-in-sfc */\n\n      /* eslint-disable no-param-reassign */\n      Controller.prototype.render = function controllerRender() {\n        var _this = this;\n\n        var boundMembers = bindMembers.reduce(function (prevMembers, key) {\n          return _objectSpread({}, prevMembers, _defineProperty({}, key, _this[key]));\n        }, {});\n        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Component, _extends({}, filterProps ? filterProps(this.props) : this.props, {\n          controller: _objectSpread({}, boundMembers, {\n            state: this.state\n          })\n        }));\n      };\n      /* eslint-enable */\n\n\n      return Controller;\n    }\n\n    if (lodash_isFunction__WEBPACK_IMPORTED_MODULE_1___default()(Controller)) {\n      if (bindMembers) {\n        // eslint-disable-next-line no-console\n        console.warn(\"PresentationContainer warning: using bindMembers with a functional controller is not supported (\".concat(Controller.prototype.constructor.name, \")\"));\n      }\n\n      return function FunctionalContainer(props) {\n        var state = Controller(props);\n        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Component, _extends({}, filterProps ? filterProps(props) : props, {\n          controller: state\n        }));\n      };\n    }\n\n    return null;\n  };\n\n  var ContainerComponent = getContainer();\n  return ContainerComponent ? pipe(middleware, ContainerComponent) : null;\n});\n\n//# sourceURL=webpack://react-presentation-container/./src/PresentationContainer.jsx?");
-
-/***/ }),
-
-/***/ "./src/index.js":
-/*!**********************!*\
-  !*** ./src/index.js ***!
-  \**********************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _PresentationContainer__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./PresentationContainer */ \"./src/PresentationContainer.jsx\");\n/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, \"default\", function() { return _PresentationContainer__WEBPACK_IMPORTED_MODULE_0__[\"default\"]; });\n\n\n\n//# sourceURL=webpack://react-presentation-container/./src/index.js?");
-
-/***/ })
-
-/******/ });
-});(props) : props, {\n          controller: state\n        }));\n      };\n    }\n\n    return null;\n  };\n\n  var ContainerComponent = getContainer();\n  return ContainerComponent ? pipe(middleware, ContainerComponent) : null;\n});\n\n//# sourceURL=webpack://react-presentation-container/./src/PresentationContainer.jsx?");
 
 /***/ }),
 
