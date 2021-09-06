@@ -2,7 +2,6 @@ const path = require('path');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 const clientConfig = {
-  mode: 'development',
   target: 'web',
   entry: {
     index: path.resolve('src/index.js')
