@@ -40,8 +40,8 @@ export default ({
         );
       }
 
-      return function FunctionalContainer(props) {
-        const state = Controller(props);
+      return function FunctionalContainer(props, ...restOfArgs) {
+        const state = Controller(props, ...restOfArgs);
 
         return <Component {...(filterProps ? filterProps(props) : props)} controller={state} />;
       };
