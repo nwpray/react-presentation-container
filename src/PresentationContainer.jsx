@@ -1,5 +1,7 @@
 import React from 'react';
+
 import isFunction from 'lodash/isFunction';
+import get from 'lodash/get';
 
 const pipe = (fncs, initValue) => fncs.reduce((prevValue, fn) => fn(prevValue), initValue);
 
@@ -33,7 +35,7 @@ export default ({
     }
 
     if (isFunction(Controller)) {
-      if (bindMembers) {
+      if (get(bindMembers, 'length', 0) > 0) {
         // eslint-disable-next-line no-console
         console.warn(
           `PresentationContainer warning: using bindMembers with a functional controller is not supported (${Controller.prototype.constructor.name})`
