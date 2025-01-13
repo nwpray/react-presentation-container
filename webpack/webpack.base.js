@@ -1,36 +1,36 @@
-const path = require('path');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
+const path = require("path");
+const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 
 const clientConfig = {
-  target: 'web',
+  target: "web",
   entry: {
-    index: path.resolve('src/index.js')
+    index: path.resolve("src/index.js"),
   },
   output: {
-    filename: '[name].js',
-    path: path.resolve('dist'),
-    library: 'react-presentation-container',
-    libraryTarget: 'umd',
-    umdNamedDefine: true
+    filename: "[name].js",
+    path: path.resolve("dist"),
+    library: "react-presentation-container",
+    libraryTarget: "umd",
+    umdNamedDefine: true,
   },
   resolve: {
-    extensions: [' ', '.js', '.jsx'],
+    extensions: [" ", ".js", ".jsx"],
     alias: {
-      '@': path.resolve('src')
-    }
+      "@": path.resolve("src"),
+    },
   },
   module: {
     rules: [
       {
         test: /\.jsx?/,
-        use: 'babel-loader',
-        include: path.resolve('src')
-      }
-    ]
+        use: "babel-loader",
+        include: path.resolve("src"),
+      },
+    ],
   },
-  plugins: [new CleanWebpackPlugin('dist')]
+  plugins: [new CleanWebpackPlugin()],
 };
 
-const serverConfig = { ...clientConfig, target: 'node' };
+const serverConfig = { ...clientConfig, target: "node" };
 
 module.exports = [clientConfig, serverConfig];

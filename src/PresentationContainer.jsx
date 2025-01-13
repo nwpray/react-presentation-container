@@ -1,16 +1,17 @@
-import React from 'react';
+import React from "react";
 
-import isFunction from 'lodash/isFunction';
-import get from 'lodash/get';
+import isFunction from "lodash/isFunction";
+import get from "lodash/get";
 
-const pipe = (fncs, initValue) => fncs.reduce((prevValue, fn) => fn(prevValue), initValue);
+const pipe = (fncs, initValue) =>
+  fncs.reduce((prevValue, fn) => fn(prevValue), initValue);
 
 export default ({
   component: Component,
   filterProps,
   bindMembers = [],
   controller: Controller,
-  middleware = []
+  middleware = [],
 }) => {
   const getContainer = () => {
     if (isFunction(Controller) && !!Controller.prototype.isReactComponent) {
@@ -35,7 +36,7 @@ export default ({
     }
 
     if (isFunction(Controller)) {
-      if (get(bindMembers, 'length', 0) > 0) {
+      if (get(bindMembers, "length", 0) > 0) {
         // eslint-disable-next-line no-console
         console.warn(
           `PresentationContainer warning: using bindMembers with a functional controller is not supported (${Controller.prototype.constructor.name})`
@@ -45,7 +46,12 @@ export default ({
       return function FunctionalContainer(props, ...restOfArgs) {
         const state = Controller(props, ...restOfArgs);
 
-        return <Component {...(filterProps ? filterProps(props) : props)} controller={state} />;
+        return (
+          <Component
+            {...(filterProps ? filterProps(props) : props)}
+            controller={state}
+          />
+        );
       };
     }
 
